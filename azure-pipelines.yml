@@ -1,0 +1,35 @@
+# Maven
+# Build your Java project and run tests with Apache Maven.
+# Add steps that analyze code, save build artifacts, deploy, and more:
+# https://docs.microsoft.com/azure/devops/pipelines/languages/java
+
+trigger:
+- main
+
+pool: Default
+
+steps:
+# Java tool installer
+# Acquire a specific version of Java from a user-supplied Azure blob or the tool cache and sets JAVA_HOME
+- task: JavaToolInstaller@0
+  inputs:
+    #versionSpec: '16' 
+    jdkArchitectureOption: 'x64'# Options: x64, x86
+    jdkSourceOption: 'PreInstalled' # Options: AzureStorage, LocalDirectory
+    #jdkFile: # Required when jdkSourceOption == LocalDirectory
+    #azureResourceManagerEndpoint: # Required when jdkSourceOption == AzureStorage
+    #azureStorageAccountName: # Required when jdkSourceOption == AzureStorage
+    #azureContainerName: # Required when jdkSourceOption == AzureStorage
+    #azureCommonVirtualFile: # Required when jdkSourceOption == AzureStorage
+    jdkDestinationDirectory: 
+    #cleanDestinationDirectory: true
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    mavenOptions: '-Xmx3072m'
+    javaHomeOption: 'JDKVersion'
+    jdkVersionOption: '1.6'
+    jdkArchitectureOption: 'x64'
+    publishJUnitResults: true
+    testResultsFiles: '**/surefire-reports/TEST-*.xml'
+    goals: 'package'
