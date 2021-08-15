@@ -1,12 +1,5 @@
 # WebGoat release notes 
 
-## Version 8.2.1
-
-### New functionality
-
-- New Docker image for arm64 architecture is now available (for Apple M1)
-
-
 ## Version 8.2.0
 
 ### New functionality

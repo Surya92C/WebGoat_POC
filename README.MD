@@ -1,6 +1,6 @@
 # WebGoat 8: A deliberately insecure Web Application
 
-[![Build](https://github.com/WebGoat/WebGoat/actions/workflows/build.yml/badge.svg)](https://github.com/WebGoat/WebGoat/actions/workflows/build.yml)
+[![Build Status](https://travis-ci.org/WebGoat/WebGoat.svg?branch=develop)](https://travis-ci.org/WebGoat/WebGoat)
 [![Coverage Status](https://coveralls.io/repos/WebGoat/WebGoat/badge.svg?branch=develop&service=github)](https://coveralls.io/github/WebGoat/WebGoat?branch=master)
 [![Codacy Badge](https://api.codacy.com/project/badge/b69ee3a86e3b4afcaf993f210fccfb1d)](https://www.codacy.com/app/dm/WebGoat)
 [![OWASP Labs](https://img.shields.io/badge/owasp-lab%20project-f7b73c.svg)](https://www.owasp.org/index.php/OWASP_Project_Inventory#tab=Labs_Projects)
@@ -27,11 +27,13 @@ you are caught engaging in unauthorized hacking, most companies will fire you.
 Claiming that you were doing security research will not work as that is the
 first thing that all hackers claim.*
 
-# Installation instructions:
+# Installation Instructions:
 
 ## 1. Run using Docker
 
 Every release is also published on [DockerHub]((https://hub.docker.com/r/webgoat/webgoat-8.0/)).
+
+### Using docker run
 
 The easiest way to start WebGoat as a Docker container is to use the all-in-one docker container. This is a docker image that has WebGoat and WebWolf running inside.
 
@@ -49,13 +51,22 @@ WebWolf will be located at: http://127.0.0.1:9090/WebWolf
 
 Download the latest WebGoat and WebWolf release from [https://github.com/WebGoat/WebGoat/releases](https://github.com/WebGoat/WebGoat/releases)
 
-```shell
-java -Dfile.encoding=UTF-8 -jar webgoat-server-8.2.1.jar [--server.port=8080] [--server.address=localhost] [--hsqldb.port=9001]
-java -Dfile.encoding=UTF-8 -jar webwolf-8.2.1.jar [--server.port=9090] [--server.address=localhost] [--hsqldb.port=9001]
+```Shell
+java -jar webgoat-server-8.1.0.jar [--server.port=8080] [--server.address=localhost]
+java -jar webwolf-8.1.0.jar [--server.port=9090] [--server.address=localhost]
 ```
 
-WebGoat will be located at: http://127.0.0.1:8080/WebGoat and 
-WebWolf will be located at: http://127.0.0.1:9090/WebWolf (change ports if necessary)
+The latest version of WebGoat needs Java 15 or above. By default, WebGoat and Webwolf start on port 8080, 9000 and 9090 with the environment variable WEBGOAT_PORT, WEBGOAT_HSQLPORT and WEBWOLF_PORT you can set different values.
+```Shell
+export WEBGOAT_PORT=18080
+export WEBGOAT_HSQLPORT=19001
+export WEBWOLF_PORT=19090
+java -jar webgoat-server-8.1.0.jar
+java -jar webwolf-8.1.0.jar 
+```
+
+Use `set` instead of export if you're using Windows cmd. 
+
 
 ## 3. Run from the sources
 

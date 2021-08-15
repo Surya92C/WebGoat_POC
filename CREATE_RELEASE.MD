@@ -21,7 +21,6 @@ git commit -am "New release, updating pom.xml"
 git flow release publish
 
 <<Make changes if necessary>>
-<<Update RELEASE_NOTES.md>>
 
 git flow release finish <version>
 git push origin develop
